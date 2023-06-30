@@ -48,6 +48,7 @@ COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --tests -p ${CRATE}
 # Copy the pnpm lockfile
 COPY pnpm-lock.yaml .npmrc ./
+# Use pnpm fetch to use the lockfile for getting dependencies
 RUN pnpm fetch
 # Copy source code
 COPY . .
@@ -57,7 +58,7 @@ RUN cargo test -p ${CRATE}
 RUN ln -s /usr/local/cargo $HOME/.cargo
 # Run commands inside the crate
 WORKDIR /app/crates/${CRATE}
-# Install pnpm dependencies
+# Install pnpm dependencies from the already fetched dependencies
 RUN pnpm i -r --offline
 # Use xvfb to enable running headlessly
 RUN xvfb-run pnpm test
