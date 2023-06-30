@@ -14,7 +14,7 @@ To test things locally I'm running inside WSL.
 
 ```bash
 cd crates/backend
-pnpm i
+pnpm i -r
 pnpm tauri dev
 ```
 
