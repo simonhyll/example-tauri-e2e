@@ -13,8 +13,8 @@ A little example on how to do e2e testing with Tauri.
 To test things locally I'm running inside WSL.
 
 ```bash
-pnpm i
 cd crates/backend
+pnpm i
 pnpm tauri dev
 ```
 
